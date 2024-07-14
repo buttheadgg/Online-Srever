@@ -5,7 +5,10 @@ module.exports = function (req, res, next){
         next()
     }
     try{
-        const token = req.header.authorization.split('')[1]
+        console.log('123', req)
+        const token = req.headers.authorization.split(' ')[1]
+        console.log(token)
+
         if(!token){
             return res.status(401).json({message: "Не авторизован"})
         }
@@ -14,5 +17,6 @@ module.exports = function (req, res, next){
         next()
     }catch (e){
         res.status(401).json({message: "Не авторизован"})
+        console.log(e)
     }
 };
